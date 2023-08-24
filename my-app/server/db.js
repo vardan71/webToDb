@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-const db = new Sequelize('backendex', 'postgres', '159753', {
+const db = new Sequelize('cardTask', 'postgres', '159753', {
     host: 'localhost',
     dialect: 'postgres',
     operatorsAliases: 0,

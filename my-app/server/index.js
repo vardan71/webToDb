@@ -6,7 +6,7 @@ const express = require('express')
 
 const db = require('./db.js')
 const Catalog = require('./models/Catalog.js')
-const Numbers = require()
+const Numbers = require('./models/Numbers.js')
 
 const app = express()
 
@@ -17,9 +17,9 @@ db.authenticate()
 
 app.get('/', async (req, res) => {
     try {
-        const user = await Catalog.findOne({
+        const user = await Numbers.findOne({
             where: {
-                ID: 1
+                id: 1
             }
         }
         )
