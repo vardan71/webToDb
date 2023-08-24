@@ -5,7 +5,7 @@ const path = require('path')
 const express = require('express')
 
 const db = require('./db.js')
-const Catalog = require('./models/Catalog.js')
+// const Catalog = require('./models/Catalog.js')
 const Numbers = require('./models/Numbers.js')
 
 const app = express()
@@ -17,12 +17,7 @@ db.authenticate()
 
 app.get('/', async (req, res) => {
     try {
-        const user = await Numbers.findOne({
-            where: {
-                id: 1
-            }
-        }
-        )
+        const user = await Numbers.findOne()
         res.end(JSON.stringify(user, null, 3));
     }
     catch (error) {

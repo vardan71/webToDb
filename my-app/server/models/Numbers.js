@@ -8,14 +8,14 @@ const Numbers = db.define('numbers', {
         autoIncrement: true,
         allowNull: false
     },
-    randomNum: {
+    nums: {
         type: Sequelize.STRING
     },
 
 },
     {
         timestamps: false,
-        tableName: 'Numbers'
+        tableName: 'numbers'
     }
 )
 
