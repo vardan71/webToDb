@@ -1,14 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import RandomNumber from "./RandomNumbers";
+import Axios from "axios"
 
 function App() {
 
   const [count, setCount] = useState([]);
+  const [data, setData] = useState('')
 
-  function addDiv() {
-    setCount((current) => [...current, RandomNumber(0, 100)]);
-  }
+  // function addDiv() {
+  //   setCount((current) => [...current, RandomNumber(0, 100)]);
+  // }
   function sortDiv() {
     setCount([...count].sort((a, b) => a - b));
   }
@@ -17,8 +19,25 @@ function App() {
     setCount(count.filter((_, i) => i !== index));
   };
 
+  function addDiv() {
+    const random = RandomNumber(0, 100)
+    setCount((current) => [...current, random]);
+    const response = Axios.get("http://localhost:3001/add")
+    setData(response.data)
+  }
+
+  // async function add() {
+
+  // await addDiv()
+  // }
+
+  // useEffect(() => {
+  //   addDiv()
+  // }, []);
+
   return (
     <div className="App">
+      {/* {data} */}
       <div className="instructions">
         <p className="instr">
           Press the "add card" button to add the new Card. Use the "sort cards"
@@ -28,6 +47,7 @@ function App() {
       </div>
       <div className="header">
         <button onClick={addDiv} className="btn">Add Div</button>
+        {/* <button onClick={add} className="btn">Add axios</button> */}
         <button onClick={sortDiv} className="btn">Sort Div</button>
       </div>
       <div className="main">
