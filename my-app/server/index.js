@@ -1,11 +1,13 @@
 const port = 3001
-const fs = require('fs')
-const path = require('path')
+// const fs = require('fs')
+// const path = require('path')
 // import RandomNumber from "./RandomNumbers";
-const RandomNumber = require('../client/src/RandomNumbers')
+// const RandomNumber = require('../client/src/RandomNumbers')
 const express = require('express')
 
-console.log(RandomNumber)
+// const addDiv = require("../client/src/App")
+
+// console.log(RandomNumber)
 const db = require('./db.js')
 // const Catalog = require('./models/Catalog.js')
 const Numbers = require('./models/Numbers.js')
@@ -26,24 +28,27 @@ app.get('/', async (req, res) => {
         res.status(404).json({
             error: error.message
         })
-
     }
 })
 
 // let num = RandomNumber()
 
-app.get('/add', async (req, res) => {
-    res.send('ahfkl')
+app.post('/add', (req, res) => {
+    // const app = require('../client/src/App');
+    // console.log(app);
+    // console.log(res);
     const data = {
-        nums: 1
+        nums:  req.query.random
     }
 
-    let { id, nums } = data
+    // console.log(res)
 
-    Numbers.create({
-        id,
-        nums
-    })
+let { id, nums } = data
+
+Numbers.create({
+    id,
+    nums
+})
 
 })
 

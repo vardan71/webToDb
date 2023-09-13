@@ -1,13 +1,14 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RandomNumber from "./RandomNumbers";
 import Axios from "axios"
+import axios from "axios";
+// import axios from "axios";
 
 function App() {
 
   const [count, setCount] = useState([]);
   const [data, setData] = useState('')
-
   // function addDiv() {
   //   setCount((current) => [...current, RandomNumber(0, 100)]);
   // }
@@ -21,9 +22,36 @@ function App() {
 
   function addDiv() {
     const random = RandomNumber(0, 100)
+    console.log(random);
     setCount((current) => [...current, random]);
-    const response = Axios.get("http://localhost:3001/add")
-    setData(response.data)
+    Axios.post("http://localhost:3001/add", null, {
+      params: {
+        random
+      }
+    })
+      .then((res) => res.status)
+
+  }
+
+  // function add() {
+
+  // useEffect(() => {
+  //   Axios.post("http://localhost:3001/add")
+  //     .then(res => {
+  //       console.log(res.data)
+  //       setData(res.data)
+  //     }).catch((err) => console.log(err))
+  // })
+  // }
+  // function adnd() {
+
+  //   const response = Axios.get("http://localhost:3001/add")
+  //   setData(response.data)
+  //   addDiv()
+  // }
+
+  function add() {
+
   }
 
   // async function add() {
@@ -32,7 +60,7 @@ function App() {
   // }
 
   // useEffect(() => {
-  //   addDiv()
+  //   add()
   // }, []);
 
   return (
@@ -46,8 +74,8 @@ function App() {
         </p>
       </div>
       <div className="header">
-        <button onClick={addDiv} className="btn">Add Div</button>
         {/* <button onClick={add} className="btn">Add axios</button> */}
+        <button onClick={addDiv} className="btn">Add Div</button>
         <button onClick={sortDiv} className="btn">Sort Div</button>
       </div>
       <div className="main">
